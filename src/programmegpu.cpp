@@ -120,6 +120,12 @@ std::string lireFichierSource(const std::string& _chemin)
     std::string strContent;
     std::ifstream fichier(_chemin.c_str());
 
+    if(!fichier)
+    {
+        std::cerr << "Impossible d'ouvrir le fichier : " << _chemin << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
     fichier.seekg(0, std::ios::end);
     strContent.reserve(fichier.tellg());
     fichier.seekg(0, std::ios::beg);
