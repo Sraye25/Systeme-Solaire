@@ -14,7 +14,7 @@
 #include <glm/gtc/matrix_inverse.hpp>
 
 #include <QOpenGLFunctions_3_3_Core>
-#define SHADER_DIR "/home/thibault/Documents/Cours/2A/LMG/Projet/Systeme_Solaire/shader/"
+#define SHADER_DIR "shader/"
 
 class ProgrammeGPU : protected QOpenGLFunctions_3_3_Core
 {
