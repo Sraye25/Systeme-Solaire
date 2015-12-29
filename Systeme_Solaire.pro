@@ -15,30 +15,30 @@ app_data.files   = $$PWD/shader
 
 INCLUDEPATH += include/
 
-SOURCES += main.cpp\
-        fenetre.cpp \
-    openglwindow.cpp \
-    programmegpu.cpp \
-    mesh.cpp \
-    camera.cpp \
-    astre.cpp \
-    sourcelumiere.cpp \
-    texture.cpp \
-    scenegraph.cpp \
-    cercle.cpp \
-    billboard.cpp
+SOURCES += src/main.cpp\
+        src/fenetre.cpp \
+    src/openglwindow.cpp \
+    src/programmegpu.cpp \
+    src/mesh.cpp \
+    src/camera.cpp \
+    src/astre.cpp \
+    src/sourcelumiere.cpp \
+    src/texture.cpp \
+    src/scenegraph.cpp \
+    src/cercle.cpp \
+    src/billboard.cpp
 
-HEADERS  += fenetre.h \
-    openglwindow.h \
-    programmegpu.h \
-    mesh.h \
-    camera.h \
-    astre.h \
-    sourcelumiere.h \
-    texture.h \
-    scenegraph.h \
-    cercle.h \
-    billboard.h
+HEADERS  += src/fenetre.h \
+    src/openglwindow.h \
+    src/programmegpu.h \
+    src/mesh.h \
+    src/camera.h \
+    src/astre.h \
+    src/sourcelumiere.h \
+    src/texture.h \
+    src/scenegraph.h \
+    src/cercle.h \
+    src/billboard.h
 
 DISTFILES += \
     shader/FS.glsl \
