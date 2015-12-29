@@ -17,7 +17,7 @@ void Texture::detruire()
 void Texture::creer(std::string _nomFichier, QImage::Format _mode, GLint _internalformat, GLenum _format)
 {
     std::string dir = IMAGE_DIR+_nomFichier;
-    //std::cout << "Chargement de la texture  : " << dir << std::endl;
+    std::cout << "Chargement de la texture  : " << dir << std::endl;
     QImage img(dir.c_str());
     QImage img0 = img.convertToFormat(_mode,Qt::NoOpaqueDetection);
     unsigned char* data = img0.scanLine(0);

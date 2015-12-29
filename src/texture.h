@@ -7,7 +7,8 @@
 #include <QImage>
 #include <iostream>
 
-#define IMAGE_DIR "/home/thibault/Documents/Cours/2A/LMG/Projet/Systeme_Solaire/image/"
+//#define IMAGE_DIR "/home/thibault/Documents/Cours/2A/LMG/Projet/Systeme_Solaire/image/"
+#define IMAGE_DIR "image/"
 
 class Texture : protected QOpenGLFunctions_3_3_Core
 {
