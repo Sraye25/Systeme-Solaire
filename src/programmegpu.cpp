@@ -28,6 +28,7 @@ void ProgrammeGPU::creerDepuisFichier( const std::string& _VSchemin, const std::
 {
     initializeOpenGLFunctions();
 
+    //VS
     std::string strvs = lireFichierSource(SHADER_DIR+_VSchemin);
     const char* strVS = strvs.c_str();
     m_idVS = glCreateShader(GL_VERTEX_SHADER);
@@ -35,6 +36,7 @@ void ProgrammeGPU::creerDepuisFichier( const std::string& _VSchemin, const std::
     glCompileShader(m_idVS);
     afficherShaderCompileInfo(m_idVS,_VSchemin.c_str());
 
+    //FS
     std::string strfs = lireFichierSource(SHADER_DIR+_FSchemin);
     const char* strFS = strfs.c_str();
     m_idFS = glCreateShader(GL_FRAGMENT_SHADER);
@@ -42,7 +44,7 @@ void ProgrammeGPU::creerDepuisFichier( const std::string& _VSchemin, const std::
     glCompileShader(m_idFS);
     afficherShaderCompileInfo(m_idFS,_FSchemin.c_str());
 
-    if(_GSchemin != "")
+    if(_GSchemin != "") //GS
     {
         std::string strgs = lireFichierSource(SHADER_DIR+_GSchemin);
         const char* strGS = strgs.c_str();
@@ -103,9 +105,8 @@ bool ProgrammeGPU::afficherShaderCompileInfo( GLuint shaderID, const std::string
     {
         strInfoLog = new char[ iInfologLength + 1 ];
         glGetShaderInfoLog(shaderID, iInfologLength, & iCharsWritten, strInfoLog );
-
+        //Afficher erreur de compilation du shader
         std::cerr << "--------------"<< std::endl << "compilation de " << message <<  " : "<<std::endl << strInfoLog <<std::endl<< "--------------"<< std::endl;
-
         delete [] strInfoLog;
     }
 
@@ -137,6 +138,7 @@ std::string lireFichierSource(const std::string& _chemin)
 //----------------------------------------------------------------------------------------------------------------------------
 void afficherMatrice44(glm::mat4 matrice)
 {
+    //Fonction de debug
     std::cout << matrice[0].x << " " << matrice[1].x << " " << matrice[2].x << " " << matrice[3].x << std::endl;
     std::cout << matrice[0].y << " " << matrice[1].y << " " << matrice[2].y << " " << matrice[3].y << std::endl;
     std::cout << matrice[0].z << " " << matrice[1].z << " " << matrice[2].z << " " << matrice[3].z << std::endl;

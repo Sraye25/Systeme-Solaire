@@ -2,6 +2,7 @@
 
 Cercle::Cercle(float _rayon) : Mesh(), m_rayon(_rayon)
 {
+    //Cercle = suie de segment qui boucle
     modifMode(GL_LINE_LOOP);
 }
 
@@ -14,6 +15,7 @@ void Cercle::modifRayon(float _rayon)
 //----------------------------------------------------------------------------------------------------------------------------
 void Cercle::creer()
 {
+    //Generation du cercle
     GLuint nbVertices = NB_SEGM;
 
     glm::vec3* position = new glm::vec3[nbVertices];

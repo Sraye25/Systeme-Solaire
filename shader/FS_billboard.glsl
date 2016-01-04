@@ -10,8 +10,7 @@ void main()
 {
    vec4 t = texture2D(texture,gs_uv);
 
-   if(t.a < 0.5) discard;
-   //if(t.r == 0.0 && t.g == 0.0 && t.b == 0.0) discard;
+   if(t.a < 0.5) discard; //On eleve les pixel avec un alpha
 
    out_fragColor = t;
 }

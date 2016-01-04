@@ -9,5 +9,5 @@ out vec4 out_fragColor;
 void main()
 {
    vec3 ITex = texture2D(texture,vs_vertexTexCoor).rgb;
-   out_fragColor = vec4(ITex,1.0f);
+   out_fragColor = vec4(ITex,1.0f); //On affiche juste la texture
 }

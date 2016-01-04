@@ -57,6 +57,6 @@ void main()
 
    vec3 ITex = texture2D(texture,vs_vertexTexCoor).rgb;
 
-   //out_fragColor = vec4(ITex+dot(ITex,Idif+Iamb)+Ispe,1.0f);
    out_fragColor = vec4((Idif+Iamb)*ITex+Ispe,1.0f);
+   //On ajoute les composante de lumiere de Phong
 }

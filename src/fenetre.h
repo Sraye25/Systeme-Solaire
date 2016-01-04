@@ -21,7 +21,7 @@
 #define DISTANCE_SOL 1
 #define RAYON 1.3
 
-#define NOM_RUSSE
+//#define NOM_RUSSE
 
 class Fenetre : public OpenGLWindow
 {
@@ -34,7 +34,6 @@ class Fenetre : public OpenGLWindow
         void update();
         void resizeEvent(QResizeEvent * event);
         void keyPressEvent(QKeyEvent* event);
-        void mousePressEvent(QMouseEvent* event);
 
     private:
 

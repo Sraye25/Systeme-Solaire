@@ -18,6 +18,7 @@ void Billboard::creer(std::string _nomFichier, Astre *_astre, glm::vec3 _positio
     Texture::creer(_nomFichier,QImage::Format_RGBA8888_Premultiplied,GL_RGBA8,GL_RGBA);
     associer(_astre);
 
+    //On prend la matrice monde de l'astre associée
     m_matriceMonde = _astre->avoirMatriceMonde();
     m_position = _position;
 
@@ -58,6 +59,7 @@ void Billboard::associer(Astre* _astre)
 //----------------------------------------------------------------------------------------------------------------------------
 void Billboard::dessiner()
 {
+    //On envoie le vextice au gpu programme
     glBindVertexArray(m_VAO);
     {
         glDrawArrays(GL_POINTS,0,1);
@@ -88,7 +90,7 @@ void Billboard::mettreTextureUnit(int _idTextureUnit)
 void Billboard::envoyerUniformVersGPU()
 {
     m_matriceMonde = m_astre->avoirMatriceMonde();
-
+    //On envoie la matrice
     glUniformMatrix4fv(m_uniformMatriceMonde,1,GL_FALSE,glm::value_ptr(m_matriceMonde));
     Texture::envoyerUniformVersGPU();
 }

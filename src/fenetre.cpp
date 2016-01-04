@@ -125,9 +125,7 @@ void Fenetre::initialize()
     for(int i=0;i<8;i++)
     {
         m_planete[i].avoirAttributLocalisation(m_programmePlanete,"vextexPosition","","vertexNormal","vextexTexcoor");
-        m_planete[i
-
-                ].avoirUniformLocalisation(m_programmePlanete,"matrice_monde","matrice_normal");
+        m_planete[i].avoirUniformLocalisation(m_programmePlanete,"matrice_monde","matrice_normal");
         m_texPlanete[i].avoirUniformLocalisation(m_programmePlanete,"texture");
 
         m_cerclePlanete[i].avoirAttributLocalisation(m_programmeCercle,"vextexPosition","","","");
@@ -171,13 +169,14 @@ void Fenetre::render()
     glPointSize(80.0f);
     glFrontFace(GL_CCW);
     glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST); //Test d'affichage
     glDepthFunc(GL_LESS);
     glDepthMask(GL_TRUE);
     glDisable(GL_BLEND);
     glCullFace(GL_BACK);
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //Fond noir
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+    //Affichage en fonction des programmes gpu
     m_programmePlanete.bind();
     {
         m_camera.envoyerUniformVersGPU();
@@ -246,33 +245,29 @@ void Fenetre::update()
 {
     float fTimeElapsed = (float) m_timer.elapsed();
 
+    //Deplacer les astres
     m_soleil.deplacer(fTimeElapsed);
     m_lune.deplacer(fTimeElapsed);
-    for(int i=0;i<8;i++)
-    {
-        m_planete[i].deplacer(fTimeElapsed);
-    }
+    for(int i=0;i<8;i++) m_planete[i].deplacer(fTimeElapsed);
 
+    //MAJ du scene graphe
     m_scenegraph.miseAJour();
+
+    //Maj de la position de la camera
     m_camera.miseAJour(fTimeElapsed);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
 void Fenetre::resizeEvent(QResizeEvent * event)
 {
+    //Modif de la matrice de projection en fct de la taille de l'écran
     m_camera.redimensionnementFenetre(width(),height());
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
 void Fenetre::keyPressEvent(QKeyEvent* event)
 {
+    //Mouvement de la caméra
     m_camera.evenementClavier(event);
 }
-
-//----------------------------------------------------------------------------------------------------------------------------
-void Fenetre::mousePressEvent(QMouseEvent* event)
-{
-    //m_camera.evenementSouris(event);
-}
-
 

@@ -43,6 +43,7 @@ void Astre::creer()
     glm::vec2* coordTex = new glm::vec2[nbVertices];
     GLuint* indices = new GLuint[nbElements];
 
+    //On génere la sphere et on crée le mesh
     initSphere(m_rayon,nbVertices,position,normal,coordTex,indices);
     creerMesh(nbVertices,nbElements,position,NULL,normal,coordTex,indices);
 
@@ -65,13 +66,13 @@ void Astre::deplacer(float _temps)
     m_matriceMonde[3].z = m_rayonDeplacement*sin(m_vitesseDeplacement*_temps);
 
     //Rotation sur lui-même
-
     m_matriceMonde = glm::rotate(m_matriceMonde,glm::radians(m_vitesseRotation*_temps),glm::vec3(0.f,0.f,1.f));
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
 void Astre::modifierCentre(glm::vec3 _centre)
 {
+    //On modifie le centre de l'astre
     m_matriceMonde[3].x += _centre.x;
     m_matriceMonde[3].y += _centre.y;
     m_matriceMonde[3].z += _centre.z;
@@ -101,6 +102,7 @@ float Astre::avoirVitesseRotation() const
 //----------------------------------------------------------------------------------------------------------------------------
 void initSphere(float rayon, GLuint nbVertices, glm::vec3* position, glm::vec3* normal, glm::vec2* coordTex, GLuint* auiIndices)
 {
+    //Generation d'une sphère
     float a1 = (180.0/(NB_PARALLELE + 1))*M_PI/180.0;
     float a2 = (360.0/(NB_MERIDIEN - 1))*M_PI/180.0;
 

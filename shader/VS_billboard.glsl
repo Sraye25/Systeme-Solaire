@@ -12,5 +12,5 @@ void main()
     vec4 position_monde = matrice_monde * vec4(position, 1.0f);
     gl_Position = matrice_projection * matrice_vue * position_monde;
 
-    color = vec4(1.0f,1.0f,1.0f,1.0f);
+    color = vec4(1.0f,1.0f,1.0f,1.0f); //Blanc
 }

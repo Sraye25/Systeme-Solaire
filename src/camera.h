@@ -31,9 +31,6 @@ class Camera : protected QOpenGLFunctions_3_3_Core
         //Creer la camera
         void creer(float largEcran=4, float hautEcran=3);
 
-        //Translation
-        //void translation(glm::vec3 _nouvellePosition);
-
         //Redimensionnement de la fenetre
         void redimensionnementFenetre(float largEcran, float hautEcran);
 
@@ -48,9 +45,6 @@ class Camera : protected QOpenGLFunctions_3_3_Core
 
         //Avoir Matrice Projection
         glm::mat4 avoirMatriceProjection() const;
-
-        //Bouger la camera avec la souris
-        void evenementSouris(QMouseEvent *ev);
 
         //Bouger la camera avec le clavier
         void evenementClavier(QKeyEvent *ev);

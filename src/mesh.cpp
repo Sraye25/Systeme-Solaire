@@ -55,8 +55,6 @@ void Mesh::avoirAttributLocalisation(ProgrammeGPU& _prog, std::string _nomPos, s
     if(_nomCoul!="") m_attribCouleur = _prog.avoirAttributeLocation(_nomCoul);
     if(_nomNorm!="") m_attribNormal = _prog.avoirAttributeLocation(_nomNorm);
     if(_nomText!="") m_attribTextureCoord = _prog.avoirAttributeLocation(_nomText);
-    //std::cout << "Attribut Mesh" << std::endl;
-    //std::cout << m_attribPosition << " " << m_attribCouleur << " " << m_attribNormal << " " << m_attribTextureCoord << std::endl;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
@@ -64,9 +62,6 @@ void Mesh::avoirUniformLocalisation(ProgrammeGPU& _prog, std::string _nomMatrice
 {
     m_uniformMatrice = _prog.avoirUniformLocation(_nomMatriceMonde);
     m_uniformNormal = _prog.avoirUniformLocation(_nomMatriceNormal);
-
-    //std::cout << "Uniforme Mesh" << std::endl;
-    //std::cout << m_uniformMatrice << " " << m_uniformNormal << std::endl;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
@@ -84,6 +79,7 @@ void Mesh::creerMesh(GLuint _nbVertice, GLuint _nbElement, glm::vec3* _position,
 
     initializeOpenGLFunctions();
 
+    //Choix des VBO à utiliser
     if(_position == NULL) m_positionPresent = false;
     if(_couleur == NULL) m_couleurPresent = false;
     if(_normal == NULL) m_normalPresent = false;
@@ -96,8 +92,6 @@ void Mesh::creerMesh(GLuint _nbVertice, GLuint _nbElement, glm::vec3* _position,
     m_VBONormal = creerBuffer(GL_ARRAY_BUFFER,m_nbVertice*sizeof(glm::vec3),_normal);
     m_VBOTextureCoord = creerBuffer(GL_ARRAY_BUFFER,m_nbVertice*sizeof(glm::vec2),_textureCoord);
     m_EBO = creerBuffer(GL_ELEMENT_ARRAY_BUFFER,m_nbElement*sizeof(GLuint),_indices);
-
-    //std::cout << m_VBOPosition << " " << m_VBOCouleur << " " << m_VBONormal << " " << m_VBOTextureCoord << std::endl;
 
     //VAO
     glGenVertexArrays(1, &m_VAO);
@@ -114,13 +108,14 @@ void Mesh::creerMesh(GLuint _nbVertice, GLuint _nbElement, glm::vec3* _position,
 //----------------------------------------------------------------------------------------------------------------------------
 void Mesh::dessiner()
 {
+    //Dessin du mesh
     glBindVertexArray(m_VAO);
     {
-        if(m_EBO==0)
+        if(m_EBO==0) //Sans EBO
         {
             glDrawArrays(m_mode,0,m_nbVertice);
         }
-        else
+        else //Avec EBO
         {
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,m_EBO);
             {
@@ -135,6 +130,7 @@ void Mesh::dessiner()
 //----------------------------------------------------------------------------------------------------------------------------
 void Mesh::multiplierMatriceMonde(glm::mat4 _matrice)
 {
+    //Sert pour le scenegraphe
     m_matriceMonde = m_matriceMonde * _matrice;
 }
 

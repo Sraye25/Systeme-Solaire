@@ -23,6 +23,7 @@ void main()
     vec4 position_monde = matrice_monde * vec4(vextexPosition, 1.0f);
     gl_Position = matrice_projection * matrice_vue * position_monde;
 
+    //Calcul lumiere
     vs_normal	= mat3(matrice_monde) * vertexNormal;
     vs_camera   = position_camera - position_monde.xyz;
     vs_lumiere	= position_lumiere - position_monde.xyz;

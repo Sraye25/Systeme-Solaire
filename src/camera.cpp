@@ -18,29 +18,18 @@ Camera::Camera(Astre* _lune) :
 //----------------------------------------------------------------------------------------------------------------------------
 void Camera::creer(float largEcran, float hautEcran)
 {
-    const glm::vec3 vEye(0.f,0.f,5.f);
-    const glm::vec3 vUp(0.f,1.f,0.f);
-    //const glm::vec3 vFront(0.f,0.f,-1.f);
-
     initializeOpenGLFunctions();
 
+    //On commence avec le 1er mode d'affichage
     majCoordonneeSpherique();
+    //On prend en compte la taille de l'écran
     redimensionnementFenetre(largEcran,hautEcran);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
-/*void Camera::translation(glm::vec3 _nouvellePosition)
-{
-    m_matriceVue[3].x = _nouvellePosition.x;
-    m_matriceVue[3].y = _nouvellePosition.y;
-    m_matriceVue[3].z = _nouvellePosition.z;
-
-    m_position = _nouvellePosition;
-}*/
-
-//----------------------------------------------------------------------------------------------------------------------------
 void Camera::redimensionnementFenetre(float largEcran, float hautEcran)
 {
+    //Creation de la matrice de perspective
     m_matriceProjection = glm::perspective(glm::radians(45.f),largEcran/hautEcran,0.1f,250.f);
 }
 
@@ -49,7 +38,6 @@ void Camera::avoirUniformLocalisation(ProgrammeGPU& _prog, std::string _nomMatri
 {
     m_uniformeMatriceVue = _prog.avoirUniformLocation(_nomMatriceVue);
     m_uniformeMatriceProjection = _prog.avoirUniformLocation(_nomMatriceProj);
-
     m_uniformePosition = _prog.avoirUniformLocation(_nomPos);
 }
 
@@ -74,12 +62,6 @@ glm::mat4 Camera::avoirMatriceProjection() const
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
-void Camera::evenementSouris(QMouseEvent *ev)
-{
-
-}
-
-//----------------------------------------------------------------------------------------------------------------------------
 void Camera::evenementClavier(QKeyEvent *ev)
 {
     if(QEvent::KeyPress == ev->type())
@@ -90,6 +72,7 @@ void Camera::evenementClavier(QKeyEvent *ev)
             case Qt::Key_L:
                 switch (m_mode)
                 {
+                    //On change le mode de vue
                     case SPHERIQUE:
                         m_mode = LUNE;
                     break;
@@ -101,7 +84,7 @@ void Camera::evenementClavier(QKeyEvent *ev)
                     break;
                 }
             break;
-
+            //On modifie les angles et le rayon
             case Qt::Key_Minus:
                 m_rayon -= vitesse;
             break;
@@ -150,7 +133,7 @@ void Camera::majCoordonneeSpherique()
     if(m_angleTheta >= 90) m_angleTheta = 89;
     if(m_anglePhi < 0) m_anglePhi = 360;
     if(m_anglePhi > 360) m_anglePhi = 0;
-
+    //Conversion spherique -> cartisien
     m_position.x = m_rayon * cos(glm::radians(m_angleTheta)) * sin(glm::radians(m_anglePhi));
     m_position.y = m_rayon * sin(glm::radians(m_angleTheta));
     m_position.z = m_rayon * cos(glm::radians(m_angleTheta)) * cos(glm::radians(m_anglePhi));

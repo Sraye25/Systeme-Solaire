@@ -37,9 +37,6 @@ void SceneNoeud::miseAJour(glm::vec3 _positionCentre)
     m_mesh->modifierCentre(_positionCentre);
     glm::vec3 vec = m_mesh->avoirPosition();
 
-    //std::cout << "Matrice" << std::endl;
-    //afficherMatrice44(m_matriceReferenciel);
-
     //Mise à jour de la matrice referentielle des enfants
     for(unsigned int i=0;i<m_enfants.size();i++)
     {

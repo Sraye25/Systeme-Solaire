@@ -36,11 +36,6 @@ void SourceLumiere::avoirUniformLocalisation(ProgrammeGPU& _prog, std::string _n
     m_uniformMaterialProp[3] = _prog.avoirUniformLocation(_nomMaterialProp[3]);
 
     m_uniformPosition = _prog.avoirUniformLocation(_nomPos);
-
-    /*std::cout << "Lumiere" << std::endl;
-    std::cout << m_uniformLumiereProp[0] << " " << m_uniformLumiereProp[1] << " " << m_uniformLumiereProp[2] << std::endl;
-    std::cout << m_uniformMaterialProp[0] << " " << m_uniformMaterialProp[1] << " " << m_uniformMaterialProp[2] << " " << m_uniformMaterialProp[3] << std::endl;
-    std::cout << m_uniformPosition << std::endl;*/
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
@@ -62,7 +57,6 @@ void SourceLumiere::envoyerUniformVersGPU()
 void SourceLumiere::translation(glm::vec3 _nouvelle_coord)
 {
     m_position = _nouvelle_coord;
-    //std::cout << m_position.x << " " << m_position.y << " " << m_position.z << std::endl;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
